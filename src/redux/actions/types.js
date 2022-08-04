@@ -1,2 +1,2 @@
 export const USER_EMAIL = 'USER_EMAIL';
-export const a = 'a';
+export const FETCH_CURRENCY = 'FETCH_CURRENCY';

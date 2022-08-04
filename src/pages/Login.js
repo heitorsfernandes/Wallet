@@ -17,10 +17,7 @@ class Login extends React.Component {
     const { email, password } = this.state;
     const minPassword = 6;
     const validEmail = /^\w+([/.-]?\w+)*@\w+([/.-]?\w+)*(\.\w{2,3})+$/;
-    if (email.match(validEmail) && password.length >= minPassword) {
-      return false;
-    }
-    return true;
+    return (email.match(validEmail) && password.length >= minPassword);
   };
 
   handleChange = ({ target }) => {
@@ -28,7 +25,7 @@ class Login extends React.Component {
     this.setState({
       [name]: value,
     }, () => {
-      this.setState({ isDisabled: this.validateLogin() });
+      this.setState({ isDisabled: !(this.validateLogin()) });
     });
   };
 
