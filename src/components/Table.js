@@ -26,7 +26,7 @@ class Table extends Component {
       <table>
         <thead>
           <tr>
-            {headerList.map((item, index) => <th key={ index }>{item}</th>)}
+            {headerList.map((item) => <th key={ item }>{item}</th>)}
           </tr>
         </thead>
         <tbody>
@@ -51,7 +51,6 @@ class Table extends Component {
                   onClick={ () => this.delete(each.id) }
                 >
                   Deletar
-
                 </button>
               </td>
             </tr>
