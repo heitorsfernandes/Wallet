@@ -1,4 +1,4 @@
-import { USER_EMAIL, FETCH_CURRENCY, ADD_NEW_EXPENSE } from './types';
+import { USER_EMAIL, FETCH_CURRENCY, ADD_NEW_EXPENSE, DELETE_EXPENSE } from './types';
 
 export const userEmail = (email) => ({
   type: USER_EMAIL,
@@ -23,3 +23,8 @@ export const addNewExpense = (info) => async (dispatch) => {
   const data = await response.json();
   dispatch({ type: ADD_NEW_EXPENSE, info, data });
 };
+
+export const deleteExpense = (param) => ({
+  type: DELETE_EXPENSE,
+  param,
+});
