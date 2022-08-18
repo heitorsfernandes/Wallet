@@ -1,10 +1,11 @@
 import '@testing-library/jest-dom';
 import React from 'react';
 import { renderWithRouterAndRedux } from './renderWith';
-import { screen } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import Wallet from "../../pages/Wallet"
-import Table from "../../components/Table"
+import Wallet from "../../pages/Wallet";
+import Table from "../../components/Table";
+import mockData from "./mockData";
 
 
 describe('Testes para a página da carteira', () => {
@@ -36,22 +37,47 @@ describe('Testes para a página da carteira', () => {
         });
         const value = screen.getByTestId('value-input');
         const description = screen.getByTestId('description-input');
+        const buttonAdd = screen.getByRole('button', { name: /adicionar despesa/i });
+
         userEvent.type(value, '24');
         userEvent.type(description, 'heitor');
-        const button = screen.getByRole('button', { name: /adicionar despesa/i });
-        userEvent.click(button);
+        userEvent.click(buttonAdd);
+
         expect(value).toHaveTextContent('');
         expect(description).toHaveTextContent('');
+
+
+
+
     });
     test('se renderiza os elementos da tabela', () => {
       renderWithRouterAndRedux(<Table/>)
         tableElements.forEach((element) => expect(screen.getByRole('columnheader', {name: element})).toBeDefined())
-    })
+    });
+    test('', async () => {
+      renderWithRouterAndRedux(<Wallet />, {
+        initialPath: "/carteira",
+        initialState: { user: { email: "heitor_soares96@oi.com" } },
+        });
+          
+          const description = screen.getByTestId('description-input');
+
+          const buttonAddExpense = screen.getByRole('button', { name: /adicionar despesa/i });
+          userEvent.click(buttonAddExpense);
+
+          const descriptionTable = await screen.findByTestId('description');
+          const tagTBody = await screen.findByTestId('tag');
+          const methodTBody = await screen.findByTestId('method');
+          const valueTBody = await screen.findByTestId('value');
+          const buttonTBody = await screen.findByTestId('delete-btn');
+
+          expect(descriptionTable).toBeVisible();
+          expect(valueTBody).toBeVisible();
+          expect(methodTBody).toBeVisible();
+          expect(tagTBody).toBeVisible();
+          expect(buttonTBody).toBeVisible();
+
+          userEvent.click(buttonTBody);
+
 });
-
-
-
-
-
-
-
+});

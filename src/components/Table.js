@@ -32,10 +32,10 @@ class Table extends Component {
         <tbody>
           {expenses.map((each) => (
             <tr key={ each.id }>
-              <td>{each.description}</td>
-              <td>{each.tag}</td>
-              <td>{each.method}</td>
-              <td>{Number(each.value).toFixed(2)}</td>
+              <td data-testid="description">{each.description}</td>
+              <td data-testid="tag">{each.tag}</td>
+              <td data-testid="method">{each.method}</td>
+              <td data-testid="value">{Number(each.value).toFixed(2)}</td>
               <td>{each.exchangeRates[each.currency].name}</td>
               <td>{Number(each.exchangeRates[each.currency].ask).toFixed(2)}</td>
               <td>
