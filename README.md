@@ -13,3 +13,4 @@ This project was developed using Javascript and Redux to manage all the aplicati
 ## Preview
 
 
+![WalletGif](https://user-images.githubusercontent.com/102385019/207123701-ea432042-dbe6-4802-8d4b-ec115a1b905d.gif)
